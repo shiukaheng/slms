@@ -1,0 +1,15 @@
+[[package]]
+name = "pydub"
+sections = ["default"]
+version = "0.25.1"
+summary = "Manipulate audio with an simple and easy high level interface"
+
+[metadata]
+lock_version = "2"
+content_hash = "sha256:2d8a4a1f430faf3df43608e305ed4df390349ac667165921b68d6e22ae88dd66"
+
+[metadata.files]
+"pydub 0.25.1" = [
+    {file = "pydub-0.25.1-py2.py3-none-any.whl", hash = "sha256:65617e33033874b59d87db603aa1ed450633288aefead953b30bded59cb599a6"},
+    {file = "pydub-0.25.1.tar.gz", hash = "sha256:980a33ce9949cab2a569606b65674d748ecbca4f0796887fd6f46173a7b0d30f"},
+]
