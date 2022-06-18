@@ -1,20 +1,89 @@
 [[package]]
+name = "altgraph"
+version = "0.17.2"
+summary = "Python graph (network) package"
+
+[[package]]
+name = "future"
+version = "0.18.2"
+requires_python = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
+summary = "Clean single-source support for Python 3 and 2"
+
+[[package]]
+name = "macholib"
+version = "1.16"
+summary = "Mach-O header analysis and editing"
+dependencies = [
+    "altgraph>=0.15",
+]
+
+[[package]]
 name = "numpy"
-sections = ["default"]
 version = "1.22.4"
+requires_python = ">=3.8"
 summary = "NumPy is the fundamental package for array computing with Python."
 
 [[package]]
+name = "pefile"
+version = "2022.5.30"
+requires_python = ">=3.6.0"
+summary = "Python PE parsing module"
+dependencies = [
+    "future",
+]
+
+[[package]]
 name = "pydub"
-sections = ["default"]
 version = "0.25.1"
 summary = "Manipulate audio with an simple and easy high level interface"
 
+[[package]]
+name = "pyinstaller"
+version = "4.5.1"
+requires_python = ">=3.6"
+summary = "PyInstaller bundles a Python application and all its dependencies into a single package."
+dependencies = [
+    "altgraph",
+    "macholib>=1.8; sys_platform == \"darwin\"",
+    "pefile>=2017.8.1; sys_platform == \"win32\"",
+    "pyinstaller-hooks-contrib>=2020.6",
+    "pywin32-ctypes>=0.2.0; sys_platform == \"win32\"",
+    "setuptools",
+]
+
+[[package]]
+name = "pyinstaller-hooks-contrib"
+version = "2022.7"
+requires_python = ">=3.7"
+summary = "Community maintained hooks for PyInstaller"
+
+[[package]]
+name = "pywin32-ctypes"
+version = "0.2.0"
+summary = "UNKNOWN"
+
+[[package]]
+name = "setuptools"
+version = "62.5.0"
+requires_python = ">=3.7"
+summary = "Easily download, build, install, upgrade, and uninstall Python packages"
+
 [metadata]
-lock_version = "2"
-content_hash = "sha256:88eb3c087f0a7aeee63c7590a9c4c701246f240bee676428ea3ff9956ab09d1d"
+lock_version = "3.1"
+content_hash = "sha256:ad169ac644d34fcfae197fd45ddb2a5536fd94f558786de7fd7c89533190d465"
 
 [metadata.files]
+"altgraph 0.17.2" = [
+    {file = "altgraph-0.17.2-py2.py3-none-any.whl", hash = "sha256:743628f2ac6a7c26f5d9223c91ed8ecbba535f506f4b6f558885a8a56a105857"},
+    {file = "altgraph-0.17.2.tar.gz", hash = "sha256:ebf2269361b47d97b3b88e696439f6e4cbc607c17c51feb1754f90fb79839158"},
+]
+"future 0.18.2" = [
+    {file = "future-0.18.2.tar.gz", hash = "sha256:b1bead90b70cf6ec3f0710ae53a525360fa360d306a86583adc6bf83a4db537d"},
+]
+"macholib 1.16" = [
+    {file = "macholib-1.16-py2.py3-none-any.whl", hash = "sha256:5a0742b587e6e57bfade1ab90651d4877185bf66fd4a176a488116de36878229"},
+    {file = "macholib-1.16.tar.gz", hash = "sha256:001bf281279b986a66d7821790d734e61150d52f40c080899df8fefae056e9f7"},
+]
 "numpy 1.22.4" = [
     {file = "numpy-1.22.4-cp310-cp310-macosx_10_14_x86_64.whl", hash = "sha256:ba9ead61dfb5d971d77b6c131a9dbee62294a932bf6a356e48c75ae684e635b3"},
     {file = "numpy-1.22.4-cp310-cp310-macosx_10_15_x86_64.whl", hash = "sha256:1ce7ab2053e36c0a71e7a13a7475bd3b1f54750b4b433adc96313e127b870887"},
@@ -39,7 +108,31 @@ content_hash = "sha256:88eb3c087f0a7aeee63c7590a9c4c701246f240bee676428ea3ff9956
     {file = "numpy-1.22.4-pp38-pypy38_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:0791fbd1e43bf74b3502133207e378901272f3c156c4df4954cad833b1380207"},
     {file = "numpy-1.22.4.zip", hash = "sha256:425b390e4619f58d8526b3dcf656dde069133ae5c240229821f01b5f44ea07af"},
 ]
+"pefile 2022.5.30" = [
+    {file = "pefile-2022.5.30.tar.gz", hash = "sha256:a5488a3dd1fd021ce33f969780b88fe0f7eebb76eb20996d7318f307612a045b"},
+]
 "pydub 0.25.1" = [
     {file = "pydub-0.25.1-py2.py3-none-any.whl", hash = "sha256:65617e33033874b59d87db603aa1ed450633288aefead953b30bded59cb599a6"},
     {file = "pydub-0.25.1.tar.gz", hash = "sha256:980a33ce9949cab2a569606b65674d748ecbca4f0796887fd6f46173a7b0d30f"},
+]
+"pyinstaller 4.5.1" = [
+    {file = "pyinstaller-4.5.1-py3-none-macosx_10_13_universal2.whl", hash = "sha256:ecc2baadeeefd2b6fbf39d13c65d4aa603afdda1c6aaaebc4577ba72893fee9e"},
+    {file = "pyinstaller-4.5.1-py3-none-manylinux2014_aarch64.whl", hash = "sha256:4d848cd782ee0893d7ad9fe2bfe535206a79f0b6760cecc5f2add831258b9322"},
+    {file = "pyinstaller-4.5.1-py3-none-manylinux2014_i686.whl", hash = "sha256:8f747b190e6ad30e2d2fd5da9a64636f61aac8c038c0b7f685efa92c782ea14f"},
+    {file = "pyinstaller-4.5.1-py3-none-manylinux2014_x86_64.whl", hash = "sha256:c587da8f521a7ce1b9efb4e3d0117cd63c92dc6cedff24590aeef89372f53012"},
+    {file = "pyinstaller-4.5.1-py3-none-win32.whl", hash = "sha256:fed9f5e4802769a416a8f2ca171c6be961d1861cc05a0b71d20dfe05423137e9"},
+    {file = "pyinstaller-4.5.1-py3-none-win_amd64.whl", hash = "sha256:aae456205c68355f9597411090576bb31b614e53976b4c102d072bbe5db8392a"},
+    {file = "pyinstaller-4.5.1.tar.gz", hash = "sha256:30733baaf8971902286a0ddf77e5499ac5f7bf8e7c39163e83d4f8c696ef265e"},
+]
+"pyinstaller-hooks-contrib 2022.7" = [
+    {file = "pyinstaller_hooks_contrib-2022.7-py2.py3-none-any.whl", hash = "sha256:5fdb97dcae177955db7ab27840cba97b89dc0c7f4fd9142bba0f9b8d8df85c48"},
+    {file = "pyinstaller-hooks-contrib-2022.7.tar.gz", hash = "sha256:6675634279cfe9e475580fb310c3d557037baefb065e6cb5a69a124361b926fd"},
+]
+"pywin32-ctypes 0.2.0" = [
+    {file = "pywin32_ctypes-0.2.0-py2.py3-none-any.whl", hash = "sha256:9dc2d991b3479cc2df15930958b674a48a227d5361d413827a4cfd0b5876fc98"},
+    {file = "pywin32-ctypes-0.2.0.tar.gz", hash = "sha256:24ffc3b341d457d48e8922352130cf2644024a4ff09762a2261fd34c36ee5942"},
+]
+"setuptools 62.5.0" = [
+    {file = "setuptools-62.5.0-py3-none-any.whl", hash = "sha256:2a5de5d1ed1fd6dfbe4f1a1079af816032e2d8dfc0975265b57a61429511d10c"},
+    {file = "setuptools-62.5.0.tar.gz", hash = "sha256:a4c782ac58fcc9e3a86e5e1a4c74cf9d24bf21e4f1562043309022e1bb76951c"},
 ]

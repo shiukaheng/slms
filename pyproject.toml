@@ -8,6 +8,7 @@ authors = [
 dependencies = [
     "pydub~=0.25",
     "numpy~=1.22",
+    "pyinstaller~=4.5",
 ]
 dev-dependencies = []
 requires-python = ">=3.10"
