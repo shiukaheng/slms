@@ -1,5 +1,5 @@
 # SLMS - Seamless loops made simple
-This minimalist python script that allows you to convert audio samples into seamless loops. The idea is really simple, we use the audio's ending to crossfade with the beginning, so when it loops around, it fades seamlessly from the end to the start again. The audio will be shorter though.
+This minimalist python script that allows you to convert audio samples into seamless loops. The idea is really simple, we use the audio's ending to crossfade with the beginning, so when it loops around, it fades seamlessly from the end to the start again. The "margin" is the length of audio (in milliseconds) of audio from the start and end for the transition.
 
 It uses PyDub and FFMPEG behind the scenes.
 ## CLI usage
@@ -13,7 +13,7 @@ options:
   -h, --help            show this help message and exit
   -d, --directory       Input is a folder
   -m MARGIN, --margin MARGIN
-                        Margin length in seconds
+                        Margin length in milliseconds
   -o OUTPUT, --output OUTPUT
                         Path to output file or folder
   -f FORMAT, --format FORMAT
