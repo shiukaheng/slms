@@ -73,8 +73,8 @@ def generate_output_file(input_file):
     # We start with the default name of the input with _seamless appended to the end.
     # If it already exists, we further add another suffix _<number> to the end of the file name.
     input_file_name = input_file.split(".")[0]
-    extensions = ".".join(input_file_name.split(".")[1:])
-    # print(extensions, "!!!")
+    extensions = ".".join(input_file.split(".")[1:])
+    print("debug", input_file_name, extensions)
     number = 0
     while os.path.exists(input_file_name + "_seamless" + ("_" + str(number) if number > 0 else "") + "." + extensions):
         number += 1

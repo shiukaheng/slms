@@ -44,10 +44,12 @@ def slmsify(input, output, margin, output_format):
     if margin == None:
         # If input file is of length < 1.5 seconds, use 15% of the audio length.
         if len(file) < 1500:
-            margin = int(len(file) * 0.15)
+            margin = len(file) * 0.15
         # Else, use 0.5 seconds.
         else:
             margin = 500
+
+    margin = int(margin)
 
     print(f"Processing input file {input} with margin {margin}, output file {output}")
     
@@ -57,13 +59,11 @@ def slmsify(input, output, margin, output_format):
     end = file[len(file)-margin:]
 
     # Create new_start and new_end for a seamless loop.
-    # Method: new_start will be a mix of fade out of end, and fade in of start.
-    # Vice versa for new_end.
-    new_start = end.fade_out(margin).append(start.fade_in(margin))
-    new_end = start.fade_out(margin).append(end.fade_in(margin))
+    # Method: new_start will be crossfade of end to start
+    new_start = end.append(start, crossfade=margin)
 
     # Combine new_start and new_end into new_middle.
-    new_file = new_start + middle + new_end
+    new_file = new_start + middle
 
     print(f"Outputting to {output}")
     computed_output_format = output_format or get_audio_format_from_extension(output)
