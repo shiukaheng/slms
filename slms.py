@@ -49,6 +49,11 @@ input_path_validity = "valid" if os.path.exists(args.input) else "invalid"
 output_path_supplied = "yes" if args.output else "no"
 output_path_exists = "yes" if args.output and os.path.exists(args.output) else "no"
 
+# Update arguments so that the paths are absolute.
+args.input = os.path.abspath(args.input)
+if args.output:
+    args.output = os.path.abspath(args.output)
+
 def case(target_input_type, target_input_path_validity, target_output_path_supplied, target_output_path_exists):
     return (
         ((input_type == target_input_type) or (input_type == "*")) and 

@@ -64,8 +64,7 @@ def slmsify(input, output, margin, output_format):
 
     # Combine new_start and new_end into new_middle.
     new_file = new_start + middle
-
-    print(f"Outputting to {output}")
+    
     computed_output_format = output_format or get_audio_format_from_extension(output)
     new_file.export(output, format=computed_output_format)
     print("Done!")
