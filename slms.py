@@ -36,7 +36,7 @@ parser.add_argument('input', help='Path to input file or folder')
 # -d flag
 parser.add_argument('-d', '--directory', action='store_true', help='Input is a folder', dest='directory')
 # -m flag
-parser.add_argument('-m', '--margin', type=float, help='Margin length in seconds', dest='margin')
+parser.add_argument('-m', '--margin', type=float, help='Margin length in milliseconds', dest='margin')
 # -o flag
 parser.add_argument('-o', '--output', help='Path to output file or folder', dest='output')
 # -f flag
