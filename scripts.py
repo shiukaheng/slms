@@ -2,13 +2,71 @@
 # This is just a simple wrapper for the PyDub to generate simple loops.
 # It is meant to be a command line utility with the following syntax:
 
-# SINGLE FILE MODE:
-# slms.py <file> -m <margin length> -o <output file>
-# If -m is not provided, assume 0.5 seconds, or if the audio is less than 1.5 seconds, use 15% of the audio length.
-# If -o is not provided, use the input file name with _seamless appended to the end of the file name.
+# This file contains the functional code for the SLMS program
 
-# FOLDER MODE:
-# slms.py <folder> -m <margin length> -o <output folder>
-# Same rules for -m
-# If -o is not provided, use the input folder name with _seamless appended to the end of the folder name.
+import pydub # For audio manipulation
 
+# Dict of supported audio file extensions to its format, this is not actually exhaustive, but it is a good start.
+supported_extensions = {
+    ".mp3": "mp3",
+    ".wav": "wav",
+    ".flac": "flac",
+    ".aac": "aac",
+    ".m4a": "m4a",
+    ".ogg": "ogg",
+    ".wma": "wma",
+}
+
+def check_if_output_format_is_supported(format):
+    if format not in supported_extensions.values():
+        raise Exception("Unsupported output format: "+format)
+
+def get_audio_format_from_extension(path):
+    print(path)
+    file_extension = "."+".".join(path.split(".")[1:])
+    # Check if the extension is actually supported (whatever is supported by FFMPEG), otherwise raise error.
+    if not file_extension in supported_extensions:
+        raise Exception("Unsupported file extension: "+file_extension)
+    return supported_extensions[file_extension]
+
+def open_audio_file(path):
+    # Open the audio file and return it.
+    return pydub.AudioSegment.from_file(path, get_audio_format_from_extension(path))
+
+def slmsify(input, output, margin, output_format):
+    # Do output format check if not none
+    if output_format:
+        check_if_output_format_is_supported(output_format)
+
+    file = open_audio_file(input)
+
+    # If margin == None
+    if margin == None:
+        # If input file is of length < 1.5 seconds, use 15% of the audio length.
+        if len(file) < 1500:
+            margin = int(len(file) * 0.15)
+        # Else, use 0.5 seconds.
+        else:
+            margin = 500
+
+    print(f"Processing input file {input} with margin {margin}, output file {output}")
+    
+    # Split into start, middle, and end.
+    start = file[:margin]
+    middle = file[margin:len(file)-margin]
+    end = file[len(file)-margin:]
+
+    # Create new_start and new_end for a seamless loop.
+    # Method: new_start will be a mix of fade out of end, and fade in of start.
+    # Vice versa for new_end.
+    new_start = end.fade_out(margin).append(start.fade_in(margin))
+    new_end = start.fade_out(margin).append(end.fade_in(margin))
+
+    # Combine new_start and new_end into new_middle.
+    new_file = new_start + middle + new_end
+
+    print(f"Outputting to {output}")
+    computed_output_format = output_format or get_audio_format_from_extension(output)
+    new_file.export(output, format=computed_output_format)
+    print("Done!")
+    return 0
